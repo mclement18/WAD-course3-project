@@ -75,4 +75,38 @@ class PinTest < ActiveSupport::TestCase
     pin.save!
     refute pin.update(tag: 'tag is way more than 30 characters long')
   end
+
+  test 'most_recent no pin' do
+    assert_empty Pin.most_recent
+  end
+
+  test 'most_recent method 3 pins' do
+    user = User.new email: 'dummy@email.com'
+    3.times do |i|
+      pin = Pin.new title: "A pin #{i+1}",
+                    image_url: 'image/url',
+                    tag: 'tag',
+                    user: user
+      pin.save!
+    end
+    assert_equal Pin.all.length, 3
+    assert_equal Pin.most_recent.length, 3
+    assert_equal Pin.most_recent.first.title, 'A pin 3'
+    assert_equal Pin.most_recent.last.title, 'A pin 1'
+  end
+
+  test 'most_recent method 7 pins' do
+    user = User.new email: 'dummy@email.com'
+    7.times do |i|
+      pin = Pin.new title: "A pin #{i+1}",
+                    image_url: 'image/url',
+                    tag: 'tag',
+                    user: user
+      pin.save!
+    end
+    assert_equal Pin.all.length, 7
+    assert_equal Pin.most_recent.length, 6
+    assert_equal Pin.most_recent.first.title, 'A pin 7'
+    assert_equal Pin.most_recent.last.title, 'A pin 2'
+  end
 end
