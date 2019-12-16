@@ -1,6 +1,7 @@
 class PinsController < ApplicationController
   def index
-    @pins = Pin.all
+    @query = params[:q]
+    @pins = Pin.search(@query)
   end
 
   def new

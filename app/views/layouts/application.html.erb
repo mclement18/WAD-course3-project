@@ -23,10 +23,11 @@
               <%= link_to('Log in / Register', new_user_path, class: 'nav-link') %>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          <%= form_tag(pins_path, method: :get, class: 'form-inline my-2 my-lg-0', role: 'search') do %>
+            <%= search_field_tag('q', nil, class: 'form-control mr-sm-2', placeholder: 'Search') %>
+            <%= button_tag('Search', class: 'btn btn-dark my-2 my-sm-0 mr-sm-2', name: nil) %>
+            <%= link_to('See All', pins_path, class: 'btn btn-dark my-2 my-sm-0') %>
+          <% end %>
         </div>
       </nav>
     </header>
