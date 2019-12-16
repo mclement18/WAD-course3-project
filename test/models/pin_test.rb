@@ -109,4 +109,61 @@ class PinTest < ActiveSupport::TestCase
     assert_equal Pin.most_recent.first.title, 'A pin 7'
     assert_equal Pin.most_recent.last.title, 'A pin 2'
   end
+
+  test 'search no matching result' do
+    pin = Pin.new title: 'A pin',
+                  image_url: 'image/url',
+                  tag: 'tag',
+                  user: User.new(email: 'dummy@email.com')
+    pin.save!
+    assert_empty Pin.search('image')
+  end
+
+  test 'search one matching result' do
+    pin = Pin.new title: 'A pin',
+                  image_url: 'image/url',
+                  tag: 'tag',
+                  user: User.new(email: 'dummy@email.com')
+    pin.save!
+    assert_equal Pin.search('pin').length, 1
+  end
+
+  test 'search two matching result' do
+    user = User.new email: 'dummy@email.com'
+    pin_1 = Pin.new title: 'Cat image',
+                  image_url: 'image/url',
+                  tag: 'tag',
+                  user: user
+    pin_1.save!
+    pin_2 = Pin.new title: 'Dog image',
+                  image_url: 'image/url',
+                  tag: 'tag',
+                  user: user
+    pin_2.save!
+    assert_equal Pin.search('image').length, 2
+  end
+
+  test 'search match tag only' do
+    pin = Pin.new title: 'A pin',
+                  image_url: 'image/url',
+                  tag: 'tag',
+                  user: User.new(email: 'dummy@email.com')
+    pin.save!
+    assert_equal Pin.search('tag').length, 1
+  end
+
+  test 'search match title and tag' do
+    user = User.new email: 'dummy@email.com'
+    pin_1 = Pin.new title: 'Cat funny image',
+                  image_url: 'image/url',
+                  tag: 'Animal',
+                  user: user
+    pin_1.save!
+    pin_2 = Pin.new title: 'Dog image',
+                  image_url: 'image/url',
+                  tag: 'Animal Funny',
+                  user: user
+    pin_2.save!
+    assert_equal Pin.search('funny').length, 2
+  end
 end
