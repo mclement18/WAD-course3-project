@@ -1,3 +1,14 @@
 // Place all the styles related to the Pins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.display-info-on-hover {
+  .info {
+    display: none;
+    background: rgba(#000, .4);
+    color: #fff;
+  }
+  &:hover .info {
+    display: block;
+  }
+}

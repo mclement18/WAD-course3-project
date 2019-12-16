@@ -1,5 +1,6 @@
 class PinsController < ApplicationController
   def index
+    @pins = Pin.all
   end
 
   def new
@@ -14,5 +15,11 @@ class PinsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  private
+
+  def pin_params
+    params.require(:pin).permit(:title, :image_url, :tag)
   end
 end
