@@ -1,19 +1,9 @@
 <main class="mb-4">
   <div class="container">
     <h1 class="text-center p-3 mb-5 border border-top-0 border-left-0 border-right-0">All Pins</h1>
-    <div class="container">
+    <div class="container d-flex flex-wrap align-items-center">
       <% @pins.each do |pin| %>
-        <div class="col-lg-4 col-md-6">
-          <div class="card bg-dark text-white display-info-on-hover">
-            <%= link_to(pin_path(pin)) do %>
-              <img class="card-img" src=<%= pin.image_url %> alt="Card image">
-              <div class="card-img-overlay info">
-                <h5 class="card-title content"><%= pin.title %></h5>
-                <p class="card-text content"><%= pin.tag %></p>
-              </div>
-            <% end %>
-          </div>
-        </div>
+        <%= render(partial: 'pin_card', locals: { pin: pin }) %>
       <% end %>
     </div>
   </div>
