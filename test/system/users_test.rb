@@ -5,7 +5,7 @@ class UsersTest < ApplicationSystemTestCase
     visit new_user_path
     fill_in 'Email', with: 'dummy@email.com'
     click_button 'Submit'
-    assert_equal current_path, about_index_path
+    assert_equal current_path, root_path
     assert_equal User.first.email, 'dummy@email.com'
   end
 
@@ -15,7 +15,7 @@ class UsersTest < ApplicationSystemTestCase
     visit new_user_path
     fill_in 'Email', with: 'dummy@email.com'
     click_button 'Submit'
-    assert_equal current_path, about_index_path
+    assert_equal current_path, root_path
     assert_equal User.all.length, 1
   end
 

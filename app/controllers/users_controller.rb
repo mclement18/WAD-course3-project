@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       render 'new'
     else
       session[:user_id] = @user.id
-      redirect_to about_index_path
+      redirect_to root_path
     end
   end
 
