@@ -3,6 +3,7 @@ class Pin < ApplicationRecord
   validates :image_url, presence: true
   validates :tag, length: { maximum: 30 }
   belongs_to :user
+  has_many :comments
 
   def self.most_recent
     all.order(created_at: :desc).limit(6)
