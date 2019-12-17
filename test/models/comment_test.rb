@@ -79,4 +79,23 @@ class CommentTest < ActiveSupport::TestCase
     assert_equal pin.comments.first, comment_1
     assert_equal 2, pin.comments.length
   end
+
+  test 'Invert comment order' do
+    user = User.new email: 'dummy@email.com'
+    pin = Pin.new title: 'Cat funny image',
+                  image_url: 'image/url',
+                  tag: 'Animal',
+                  user: user
+    comment_1 = Comment.new body: "It is so cute!", 
+                  pin: pin, 
+                  user: user
+    comment_2 = Comment.new body: "It is so cute!", 
+                  pin: pin, 
+                  user: user
+    pin.comments << comment_1
+    pin.comments << comment_2
+    pin.save!
+    assert_equal pin.comments_invert.first, comment_2
+    assert_equal 2, pin.comments_invert.length
+  end
 end

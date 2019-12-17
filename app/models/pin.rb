@@ -13,4 +13,8 @@ class Pin < ApplicationRecord
     database_query = "%#{query}%"
     where('title LIKE ?', database_query).or(where('tag LIKE ?', database_query))
   end
+
+  def comments_invert
+    comments.reverse
+  end
 end
