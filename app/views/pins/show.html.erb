@@ -1,0 +1,47 @@
+<main class="mb-4">
+  <div class="container d-flex flex-wrap mb-5">
+    <div class="col-12 col-md-3 col-lg-4 order-md-2">
+      <h1 class=""><%= @pin.title %></h1>
+      <p><%= @pin.tag %></p>
+      <p>Created by <span></span></p>
+      <p>Pinned by n poeple</p>
+    </div>
+    <div class="col-12 col-md-8 col-lg-7 order-md-1">
+      <img class="card-img" src=<%= @pin.image_url %> alt="Card image">
+    </div>
+  </div>
+  <div class="container">
+    <h2 class="mb-4">Comments <span class="h6 text-secondary">comments number</span></h2>
+    <form action="" class="media mw-lg-75 mb-5">
+      <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
+      <div class="form-group media-body">
+        <label for="" class="">Add a comment</label>
+        <textarea name="" id="" class="form-control mb-2"></textarea>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+    <ul class="list-unstyled mw-lg-75 mb-4">
+      <li class="media mb-4">
+        <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
+        <div class="media-body">
+          <h5 class="mt-0 mb-1">List-based media object</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </li>
+      <li class="media mb-4">
+        <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
+        <div class="media-body">
+          <h5 class="mt-0 mb-1">List-based media object</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </li>
+      <li class="media mb-4">
+        <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
+        <div class="media-body">
+          <h5 class="mt-0 mb-1">List-based media object</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </li>
+    </ul>
+  </div>
+</main>

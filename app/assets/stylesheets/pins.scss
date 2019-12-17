@@ -12,3 +12,9 @@
     display: block;
   }
 }
+
+@media (min-width: 992px) {
+  .mw-lg-75 {
+    max-width: 75%;
+  }
+}
