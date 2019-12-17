@@ -35,14 +35,14 @@
       <% end %>
     </span></h2>
 
-    <form action="" class="media mw-lg-75 mb-5">
+    <%= form_for([@pin, @comment], html: { class: 'media mw-lg-75 mb-5' }) do |form| %>
       <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
       <div class="form-group media-body">
-        <label for="" class="">Add a comment</label>
-        <textarea name="" id="" class="form-control mb-2" rows="3" maxlength="500"></textarea>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <%= form.label(:body, 'Add a comment') %>
+        <%= form.text_area(:body, class: 'form-control mb-2', rows: 3, maxlength: 500, placeholder: 'Max 500 characters...') %>
+        <%= form.submit('Post', class: 'btn btn-primary w-25') %>
       </div>
-    </form>
+    <% end %>
 
     <% if @pin.comments.any? %>
       <ul class="list-unstyled mw-lg-75 mb-4">
@@ -50,7 +50,7 @@
           <li class="media mb-4">
             <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
             <div class="media-body">
-              <h5 class="mt-0 mb-1"><%= comment.user %> <time datetime=<%= comment.created_at.strftime("%FT%T") %>><%= comment.created_at.strftime("%d %b '%y") %></time></h5>
+              <h5 class="mt-0 mb-1"><%= comment.user.email %> <time datetime=<%= comment.created_at.strftime("%FT%T") %> class="h6 text-secondary"><%= comment.created_at.strftime("%d %b '%y") %></time></h5>
               <p>
                 <%= comment.body %>
               </p>
