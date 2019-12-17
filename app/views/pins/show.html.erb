@@ -1,10 +1,18 @@
 <main class="mb-4">
   <div class="container d-flex flex-wrap mb-5">
     <div class="col-12 col-md-3 col-lg-4 order-md-2">
-      <h1 class=""><%= @pin.title %></h1>
-      <p><%= @pin.tag %></p>
-      <p>Created by <span></span></p>
-      <p>Pinned by n poeple</p>
+      <h1 class="mb-3"><%= @pin.title %></h1>
+      <h3 class="h6 mb-3"><%= @pin.tag %></h3>
+      <ul class="list-unstyled d-flex flex-wrap d-xl-block small text-secondary">
+        <li class="d-flex flex-wrap mr-2 mr-lg-0 mb-1 separator">
+          Created by 
+          <div class="d-flex ml-1 ml-md-0 ml-lg-1 text-dark">
+            <%= image_tag('avatar', atl: 'Default avatar', class: 'img-small rounded-circle mr-1') %> 
+            <%= @pin.user.email %>
+          </div>
+        </li>
+        <li class="mr-2 mr-lg-0 mb-1">Pinned by <span class="text-dark">n poeple</span></li>
+      </ul>
     </div>
     <div class="col-12 col-md-8 col-lg-7 order-md-1">
       <img class="card-img" src=<%= @pin.image_url %> alt="Card image">
@@ -16,7 +24,7 @@
       <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
       <div class="form-group media-body">
         <label for="" class="">Add a comment</label>
-        <textarea name="" id="" class="form-control mb-2"></textarea>
+        <textarea name="" id="" class="form-control mb-2" rows="3" maxlength="500"></textarea>
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
@@ -25,21 +33,27 @@
         <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
         <div class="media-body">
           <h5 class="mt-0 mb-1">List-based media object</h5>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          <p>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </p>
         </div>
       </li>
       <li class="media mb-4">
         <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
         <div class="media-body">
           <h5 class="mt-0 mb-1">List-based media object</h5>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          <p>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </p>
         </div>
       </li>
       <li class="media mb-4">
         <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
         <div class="media-body">
           <h5 class="mt-0 mb-1">List-based media object</h5>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          <p>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </p>
         </div>
       </li>
     </ul>

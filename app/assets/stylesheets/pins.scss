@@ -13,8 +13,28 @@
   }
 }
 
+.img-small {
+  width: 20px;
+  height: 20px;
+}
+
+.form-control {
+  resize: none;
+}
+
 @media (min-width: 992px) {
   .mw-lg-75 {
     max-width: 75%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .separator {
+    &::after {
+      content: "";
+      display: block;
+      border: 1px solid #868e96;
+      margin-left: 0.5rem;
+    }
   }
 }
