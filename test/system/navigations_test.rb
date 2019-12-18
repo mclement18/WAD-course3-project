@@ -91,6 +91,14 @@ class NavigationsTest < ApplicationSystemTestCase
     assert_equal current_path, new_user_path
   end
 
+  test 'visitor cannot access user_pinboard_pins_path' do
+    user = User.new email: 'dummy@email.com'
+    user.save!
+    visit user_pinboard_pins_path(user)
+    refute_equal current_path, user_pinboard_pins_path(user)
+    assert_equal current_path, new_user_path
+  end
+
   test 'visitor cannot access edit_pin_path' do
     pin = Pin.new title: "Cat image",
                     image_url: 'http://fpoimg.com/255x170',
