@@ -13,6 +13,12 @@
   }
 }
 
+.no-hover {
+  &:hover {
+    background: none;
+  }
+}
+
 .img-small {
   width: 20px;
   height: 20px;

@@ -21,6 +21,11 @@ class PinsController < ApplicationController
   def show
     @pin = Pin.find(params[:id])
     @comment = Comment.new
+    @user_logged_in = session[:user_id].present?
+    if @user_logged_in
+      @user = User.find(session[:user_id])
+      @disable_add_pin = false # @user.pinboard.exists?(@pin.id)
+    end
   end
 
   private

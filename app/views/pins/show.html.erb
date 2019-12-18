@@ -4,19 +4,35 @@
     <div class="col-12 col-md-3 col-lg-4 order-md-2">
       <h1 class="mb-3"><%= @pin.title %></h1>
       <h3 class="h6 mb-3"><%= @pin.tag %></h3>
-      <ul class="list-unstyled d-flex flex-wrap d-xl-block small text-secondary">
+      <ul class="list-unstyled small text-secondary">
 
-        <li class="d-flex flex-wrap mr-2 mr-lg-0 mb-1 separator">
-          Created by 
-          <div class="d-flex ml-1 ml-md-0 ml-lg-1 text-dark">
-            <%= image_tag('avatar', atl: 'Default avatar', class: 'img-small rounded-circle mr-1') %> 
-            <%= @pin.user.email %>
+        <li class="d-flex flex-wrap mr-2 mr-lg-0 mb-2">
+          <div class="d-flex flex-wrap mr-2 mb-1 separator">
+            Created by 
+            <span class="d-flex ml-1 ml-md-0 ml-lg-1 text-dark">
+              <%= image_tag('avatar', atl: 'Default avatar', class: 'img-small rounded-circle mr-1') %> 
+              <%= @pin.user.email %>
+            </span>
+          </div>
+          <div class="">
+            On <time datetime=<%= @pin.created_at.strftime("%FT%T") %> class="text-dark"><%= @pin.created_at.strftime("%d %b '%y") %></time>
           </div>
         </li>
 
         <li class="mr-2 mr-lg-0 mb-1">Pinned by <span class="text-dark">n poeple</span></li>
 
       </ul>
+
+      <% if @user_logged_in %>
+        <div class="w-100 btn-group mb-2" role="group">
+          <%= link_to('Edit', edit_pin_path(@pin), class: 'btn btn-outline-dark w-50 text-uppercase') %>
+          <%= form_tag(users_path, method: :post, class: 'btn btn-outline-dark w-50 p-0 no-hover') do %>
+            <%= hidden_field_tag(:pin_id, @pin.id) %>
+            <%= button_tag('Add', class: 'btn btn-outline-dark w-100 text-uppercase border-0 rounded-0', disabled: @disable_add_pin) %>
+          <% end %>
+        </div>
+      <% end %>
+      
     </div>
 
     <div class="col-12 col-md-8 col-lg-7 order-md-1">
@@ -35,13 +51,15 @@
       <% end %>
     </span></h2>
 
-    <%= form_for([@pin, @comment], html: { class: 'media mw-lg-75 mb-5' }) do |form| %>
-      <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
-      <div class="form-group media-body">
-        <%= form.label(:body, 'Add a comment') %>
-        <%= form.text_area(:body, class: 'form-control mb-2', rows: 3, maxlength: 500, placeholder: 'Max 500 characters...') %>
-        <%= form.submit('Post', class: 'btn btn-primary w-25') %>
-      </div>
+    <% if @user_logged_in %>
+      <%= form_for([@pin, @comment], html: { class: 'media mw-lg-75 mb-5' }) do |form| %>
+        <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
+        <div class="form-group media-body">
+          <%= form.label(:body, 'Add a comment') %>
+          <%= form.text_area(:body, class: 'form-control mb-2', rows: 3, maxlength: 500, placeholder: 'Max 500 characters...') %>
+          <%= form.submit('Post', class: 'btn btn-primary w-25') %>
+        </div>
+      <% end %>
     <% end %>
 
     <% if @pin.comments.any? %>
