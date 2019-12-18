@@ -15,4 +15,29 @@ class ShowPinsTest < ApplicationSystemTestCase
     assert page.has_content?('tag')
     assert page.has_content?(user.email)
   end
+
+  test 'edit and add button are displayed to logged user' do
+    pin = Pin.new title: "Cat image",
+                    image_url: 'http://fpoimg.com/255x170',
+                    tag: 'tag',
+                    user: User.new(email: 'dummy@email.com')
+    pin.save!
+    visit new_user_path
+    fill_in 'Email', with: 'dummy@email.com'
+    click_button 'Submit'
+    visit pin_path(pin)
+    assert page.has_content?('EDIT')
+    assert page.has_content?('ADD')
+  end
+
+  test 'edit and add button are NOT displayed to visitors' do
+    pin = Pin.new title: "Cat image",
+                    image_url: 'http://fpoimg.com/255x170',
+                    tag: 'tag',
+                    user: User.new(email: 'dummy@email.com')
+    pin.save!
+    visit pin_path(pin)
+    refute page.has_content?('EDIT')
+    refute page.has_content?('ADD')
+  end
 end
