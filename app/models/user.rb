@@ -3,5 +3,5 @@ class User < ApplicationRecord
 
   has_many :pins
   has_many :comments
-  has_and_belongs_to_many :pinboard_pins, class_name: 'Pins'
+  has_and_belongs_to_many :pinboard_pins, class_name: 'Pin'
 end

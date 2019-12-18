@@ -1,6 +1,9 @@
 class PinsController < ApplicationController
   def index
     @user_logged_in = session[:user_id].present?
+    if @user_logged_in
+      @user = User.find(session[:user_id])
+    end
     @query = params[:q]
     @pins = Pin.search(@query)
   end
@@ -8,6 +11,7 @@ class PinsController < ApplicationController
   def new
     @user_logged_in = session[:user_id].present?
     if @user_logged_in
+      @user = User.find(session[:user_id])
       @pin = Pin.new
     else
       redirect_to new_user_path
@@ -37,6 +41,7 @@ class PinsController < ApplicationController
   def edit
     @user_logged_in = session[:user_id].present?
     if @user_logged_in
+      @user = User.find(session[:user_id])
       @pin = Pin.find(params[:id])
     else
       redirect_to new_user_path

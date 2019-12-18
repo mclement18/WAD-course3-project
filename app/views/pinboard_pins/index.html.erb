@@ -1,10 +1,14 @@
 <main class="mb-4">
   <div class="container">
     <h1 class="text-center p-3 mb-5 border border-top-0 border-left-0 border-right-0">My PinBoard</h1>
-    <div class="container d-flex flex-wrap align-items-center">
-      <% @user.pinboard_pins.each do |pin| %>
-        <%= render(partial: 'pin_card', locals: { pin: pin }) %>
-      <% end %>
-    </div>
+    <% if @user.pinboard_pins.any? %>
+      <div class="container d-flex flex-wrap align-items-center">
+        <% @user.pinboard_pins.each do |pin| %>
+          <%= render(partial: 'pin_card', locals: { pin: pin }) %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="h3 text-center text-danger mb-5">Your PinBoard is empty! Go pin some images!</p>
+    <% end %>
   </div>
 </main>

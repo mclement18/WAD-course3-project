@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   def new
     @user_logged_in = session[:user_id].present?
     if @user_logged_in
-      redirect_to root_path
+      user = User.find(session[:user_id])
+      redirect_to user_pinboard_pins_path(user)
     else
       @user = User.new
     end
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
       render 'new'
     else
       session[:user_id] = @user.id
-      redirect_to root_path
+      redirect_to user_pinboard_pins_path(@user)
     end
   end
 
