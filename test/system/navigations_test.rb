@@ -10,6 +10,7 @@ class NavigationsTest < ApplicationSystemTestCase
     visit root_path
     assert page.has_content?('Log in / Register')
     refute page.has_content?('My PinBoard')
+    refute page.has_content?('Create Pin')
     click_on 'About'
     assert_equal current_path, about_index_path
     assert page.has_content?('Log in / Register')
@@ -52,6 +53,7 @@ class NavigationsTest < ApplicationSystemTestCase
     click_on 'Submit'
     assert_equal current_path, user_pinboard_pins_path(User.first)
     assert page.has_content?('My PinBoard')
+    assert page.has_content?('Create Pin')
     refute page.has_content?('Log in / Register')
     click_on 'About'
     assert_equal current_path, about_index_path
@@ -74,6 +76,11 @@ class NavigationsTest < ApplicationSystemTestCase
     assert_equal current_path, edit_pin_path(pin)
     assert page.has_content?('My PinBoard')
     refute page.has_content?('Log in / Register')
+    click_on 'Create Pin'
+    assert_equal current_path, new_pin_path
+    assert page.has_content?('My PinBoard')
+    click_on 'My PinBoard'
+    assert_equal current_path, user_pinboard_pins_path(User.first)
     click_on 'Pin Your Images', match: :first
     assert_equal current_path, root_path
   end
