@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   get 'about/index'
   
-  resources :users
+  resources :users do
+    resources :pinboard_pins
+  end
 
   resources :pins do
     resources :comments
