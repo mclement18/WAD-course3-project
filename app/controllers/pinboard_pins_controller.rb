@@ -9,6 +9,9 @@ class PinboardPinsController < ApplicationController
   end
 
   def create
-    
+    user = User.find(params[:user_id])
+    pin = Pin.find(params[:pin_id])
+    user.pinboard_pins << pin
+    redirect_to pin_path(pin)
   end
 end

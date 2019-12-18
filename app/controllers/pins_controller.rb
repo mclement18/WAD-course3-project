@@ -19,9 +19,12 @@ class PinsController < ApplicationController
   end
 
   def create
+    @user_logged_in = session[:user_id].present?
+    @user = User.find(session[:user_id])
     @pin = Pin.new(pin_params)
-    @pin.user = User.find(session[:user_id])
+    @pin.user = @user
     if @pin.save
+      @user.pinboard_pins << @pin
       redirect_to pins_path
     else
       render 'new'
@@ -34,7 +37,7 @@ class PinsController < ApplicationController
     @user_logged_in = session[:user_id].present?
     if @user_logged_in
       @user = User.find(session[:user_id])
-      @disable_add_pin = false # @user.pinboard.exists?(@pin.id)
+      @disable_add_pin = @user.pinboard_pins.exists?(@pin.id)
     end
   end
 
@@ -49,6 +52,8 @@ class PinsController < ApplicationController
   end
 
   def update
+    @user_logged_in = session[:user_id].present?
+    @user = User.find(session[:user_id])
     @pin = Pin.find(params[:id])
     if @pin.update(pin_params)
       redirect_to pin_path(@pin)
