@@ -97,4 +97,51 @@ class PinsTest < ApplicationSystemTestCase
     click_button 'Create Pin'
     assert page.has_content?('Tag is too long')
   end
+
+  test 'update pinned image title' do
+    pin = Pin.new title: "Cat image",
+                    image_url: 'http://fpoimg.com/255x170',
+                    tag: 'tag',
+                    user: User.new(email: 'dummy@email.com')
+    pin.save!
+    visit new_user_path
+    fill_in 'Email', with: 'dummy@email.com'
+    click_button 'Submit'
+    visit edit_pin_path(pin)
+    fill_in 'Title', with: 'Dog image'
+    click_button 'Update Pin'
+    assert_equal current_path, pin_path(pin)
+    assert page.has_content?('Dog image')
+  end
+
+  test 'update pinned image tag' do
+    pin = Pin.new title: "Cat image",
+                    image_url: 'http://fpoimg.com/255x170',
+                    tag: 'tag',
+                    user: User.new(email: 'dummy@email.com')
+    pin.save!
+    visit new_user_path
+    fill_in 'Email', with: 'dummy@email.com'
+    click_button 'Submit'
+    visit edit_pin_path(pin)
+    fill_in 'Tag', with: 'Animal'
+    click_button 'Update Pin'
+    assert_equal current_path, pin_path(pin)
+    assert page.has_content?('Animal')
+  end
+
+  test 'update pinned image tag, tag too long' do
+    pin = Pin.new title: "Cat image",
+                    image_url: 'http://fpoimg.com/255x170',
+                    tag: 'tag',
+                    user: User.new(email: 'dummy@email.com')
+    pin.save!
+    visit new_user_path
+    fill_in 'Email', with: 'dummy@email.com'
+    click_button 'Submit'
+    visit edit_pin_path(pin)
+    fill_in 'Tag', with: 'tag is way more than 30 characters long'
+    click_button 'Update Pin'
+    assert page.has_content?('Tag is too long')
+  end
 end
