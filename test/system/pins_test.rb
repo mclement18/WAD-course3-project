@@ -7,7 +7,7 @@ class PinsTest < ApplicationSystemTestCase
     visit new_user_path
     fill_in 'Email', with: 'dummy@email.com'
     click_button 'Submit'
-    assert_equal current_path, root_path
+    assert_equal current_path, user_pinboard_pins_path(user)
     visit new_pin_path
     fill_in 'Title', with: 'An image'
     fill_in 'Image url', with: 'http://fpoimg.com/255x170'
@@ -61,7 +61,7 @@ class PinsTest < ApplicationSystemTestCase
     visit new_user_path
     fill_in 'Email', with: 'dummy@email.com'
     click_button 'Submit'
-    assert_equal current_path, root_path
+    assert_equal current_path, user_pinboard_pins_path(user)
     visit new_pin_path
     fill_in 'Image url', with: 'http://fpoimg.com/255x170'
     fill_in 'Tag', with: 'A tag'
@@ -75,7 +75,7 @@ class PinsTest < ApplicationSystemTestCase
     visit new_user_path
     fill_in 'Email', with: 'dummy@email.com'
     click_button 'Submit'
-    assert_equal current_path, root_path
+    assert_equal current_path, user_pinboard_pins_path(user)
     visit new_pin_path
     fill_in 'Title', with: 'An image'
     fill_in 'Tag', with: 'A tag'
@@ -89,7 +89,7 @@ class PinsTest < ApplicationSystemTestCase
     visit new_user_path
     fill_in 'Email', with: 'dummy@email.com'
     click_button 'Submit'
-    assert_equal current_path, root_path
+    assert_equal current_path, user_pinboard_pins_path(user)
     visit new_pin_path
     fill_in 'Title', with: 'An image'
     fill_in 'Image url', with: 'http://fpoimg.com/255x170'

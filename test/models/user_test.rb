@@ -37,4 +37,46 @@ class UserTest < ActiveSupport::TestCase
     user_2 = User.new email: 'dummy@email.com'
     refute user_2.valid?
   end
+
+  test 'user has no pin in pinboard' do
+    user = User.new email: 'dummy@email.com'
+    user.save!
+    assert_empty user.pinboard_pins
+  end
+
+  test 'user has two pins in pinboard' do
+    user = User.new email: 'dummy@email.com'
+    user.save!
+    pin_1 = Pin.new title: 'Cat funny image',
+                    image_url: 'image/url',
+                    tag: 'Animal',
+                    user: user
+    pin_1.save!
+    pin_2 = Pin.new title: 'Dog image',
+                    image_url: 'image/url',
+                    tag: 'Animal Funny',
+                    user: user
+    pin_2.save!
+    user.pinboard_pins << pin_1
+    user.pinboard_pins << pin_2
+    assert_equal user.pinboard_pins.length, 2
+  end
+
+  test 'user pinboard is ordered' do
+    user = User.new email: 'dummy@email.com'
+    user.save!
+    pin_1 = Pin.new title: 'Cat funny image',
+                    image_url: 'image/url',
+                    tag: 'Animal',
+                    user: user
+    pin_1.save!
+    pin_2 = Pin.new title: 'Dog image',
+                    image_url: 'image/url',
+                    tag: 'Animal Funny',
+                    user: user
+    pin_2.save!
+    user.pinboard_pins << pin_1
+    user.pinboard_pins << pin_2
+    assert_equal user.pinboard_pins.first, pin_1
+  end
 end

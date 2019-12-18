@@ -50,7 +50,7 @@ class NavigationsTest < ApplicationSystemTestCase
     refute page.has_content?('My PinBoard')
     fill_in 'Email', with: 'dummy@email.com'
     click_on 'Submit'
-    assert_equal current_path, root_path
+    assert_equal current_path, user_pinboard_pins_path(User.first)
     assert page.has_content?('My PinBoard')
     refute page.has_content?('Log in / Register')
     click_on 'About'
@@ -101,7 +101,7 @@ class NavigationsTest < ApplicationSystemTestCase
     click_on 'Submit'
     visit new_user_path
     refute_equal current_path, new_user_path
-    assert_equal current_path, root_path
+    assert_equal current_path, user_pinboard_pins_path(User.first)
   end
 
   test 'Back to Top link' do
