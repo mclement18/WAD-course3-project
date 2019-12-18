@@ -103,4 +103,10 @@ class NavigationsTest < ApplicationSystemTestCase
     refute_equal current_path, new_user_path
     assert_equal current_path, root_path
   end
+
+  test 'Back to Top link' do
+    visit root_path
+    click_on 'Back to Top'
+    assert current_url.include?('#top')
+  end
 end

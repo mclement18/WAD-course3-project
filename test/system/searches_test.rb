@@ -71,4 +71,11 @@ class SearchesTest < ApplicationSystemTestCase
     matches[1].hover
     assert page.has_content?('View of Geneva lake')
   end
+
+  test 'search query is displayed in url' do
+    visit root_path
+    fill_in 'q', with: 'Cat'
+    click_button 'Search'
+    assert current_url.include?('q=Cat')
+  end
 end
