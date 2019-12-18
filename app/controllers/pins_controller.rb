@@ -1,11 +1,17 @@
 class PinsController < ApplicationController
   def index
+    @user_logged_in = session[:user_id].present?
     @query = params[:q]
     @pins = Pin.search(@query)
   end
 
   def new
-    @pin = Pin.new
+    @user_logged_in = session[:user_id].present?
+    if @user_logged_in
+      @pin = Pin.new
+    else
+      redirect_to new_user_path
+    end
   end
 
   def create
@@ -29,7 +35,12 @@ class PinsController < ApplicationController
   end
 
   def edit
-    @pin = Pin.find(params[:id])
+    @user_logged_in = session[:user_id].present?
+    if @user_logged_in
+      @pin = Pin.find(params[:id])
+    else
+      redirect_to new_user_path
+    end
   end
 
   def update

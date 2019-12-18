@@ -19,9 +19,15 @@
             <li class="nav-item">
               <%= link_to('About', about_index_path, class: 'nav-link') %>
             </li>
-            <li class="nav-item">
-              <%= link_to('Log in / Register', new_user_path, class: 'nav-link') %>
-            </li>
+            <% if @user_logged_in %>
+              <li class="nav-item">
+                <%= link_to('My PinBoard', pins_path, class: 'nav-link') %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to('Log in / Register', new_user_path, class: 'nav-link') %>
+              </li>
+            <% end %>
           </ul>
           <%= form_tag(pins_path, method: :get, class: 'form-inline my-2 my-lg-0', role: 'search') do %>
             <%= search_field_tag('q', nil, class: 'form-control mr-sm-2', placeholder: 'Search') %>
