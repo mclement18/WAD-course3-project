@@ -32,7 +32,7 @@
           <% end %>
         </div>
       <% end %>
-      
+
     </div>
 
     <div class="col-12 col-md-8 col-lg-7 order-md-1">
@@ -52,6 +52,13 @@
     </span></h2>
 
     <% if @user_logged_in %>
+      <% if @comment.errors.any? %>
+        <div class="row justify-content-center">
+          <div class="alert alert-danger col-sm-11" role="alert">
+            <%= @comment.errors.full_messages.join('<br />').html_safe %>
+          </div>
+        </div>
+      <% end %>
       <%= form_for([@pin, @comment], html: { class: 'media mw-lg-75 mb-5' }) do |form| %>
         <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
         <div class="form-group media-body">

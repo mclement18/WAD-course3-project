@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to pin_path(@pin)
     else
+      @user_logged_in = session[:user_id].present?
       render 'pins/show'
     end
   end
