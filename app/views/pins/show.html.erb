@@ -30,7 +30,7 @@
     </div>
 
     <div class="col-12 col-md-8 col-lg-7 order-md-1">
-      <img class="card-img" src=<%= @pin.image_url %> alt="Card image">
+      <%= render(partial: 'pin_image', locals: { image_url: @pin.image_url }) %>
     </div>
 
   </div>

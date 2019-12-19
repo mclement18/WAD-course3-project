@@ -1,7 +1,7 @@
 <div class="col-lg-4 col-md-6 mb-3">
   <div class="card bg-dark text-white display-info-on-hover">
     <%= link_to(pin_path(pin)) do %>
-      <img class="card-img" src=<%= pin.image_url %> alt="Card image">
+      <%= render(partial: 'pin_image', locals: { image_url: pin.image_url }) %>
       <div class="card-img-overlay info">
         <h5 class="card-title content"><%= pin.title %></h5>
         <p class="card-text content"><%= pin.tag %></p>
