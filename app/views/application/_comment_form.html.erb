@@ -1,5 +1,5 @@
 <%= form_for([pin, comment], html: { class: 'media mw-lg-75 mb-5' }) do |form| %>
-  <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
+  <%= render(partial: 'avatar', locals: { size: :normal }) %>
   <div class="form-group media-body">
     <%= form.label(:body, 'Add a comment') %>
     <%= form.text_area(:body, class: 'form-control mb-2', rows: 3, maxlength: 500, placeholder: 'Max 500 characters...') %>
