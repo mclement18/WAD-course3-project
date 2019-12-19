@@ -1,13 +1,7 @@
 <main class="mb-4">
   <div class="container border rounded w-50">
     <h1 class="text-center p-3 mb-5 border border-top-0 border-left-0 border-right-0">Create new Pinned image</h1>
-    <% if @pin.errors.any? %>
-      <div class="row justify-content-center">
-        <div class="alert alert-danger col-sm-11" role="alert">
-          <%= @pin.errors.full_messages.join('<br />') %>
-        </div>
-      </div>
-    <% end %>
+    <%= render(partial: 'form_alert', locals: { item: @pin }) %>
     <%= form_for(@pin) do |form| %>
       <div class="form-group row justify-content-center">
         <%= form.label(:title, class: 'col-sm-2 col-form-label pl-0') %>

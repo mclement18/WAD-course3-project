@@ -1,0 +1,7 @@
+<% if item.errors.any? %>
+  <div class="row justify-content-center">
+    <div class="alert alert-danger col-sm-11" role="alert">
+      <%= item.errors.full_messages.join('<br />').html_safe %>
+    </div>
+  </div>
+<% end %>
