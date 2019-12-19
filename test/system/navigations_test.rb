@@ -81,6 +81,7 @@ class NavigationsTest < ApplicationSystemTestCase
     assert page.has_content?('My PinBoard')
     click_on 'My PinBoard'
     assert_equal current_path, user_pinboard_pins_path(User.first)
+    assert page.has_content?('My PinBoard')
     click_on 'Pin Your Images', match: :first
     assert_equal current_path, root_path
   end

@@ -96,6 +96,7 @@ class PinsTest < ApplicationSystemTestCase
     fill_in 'Tag', with: 'tag is way more than 30 characters long'
     click_button 'Create Pin'
     assert page.has_content?('Tag is too long')
+    assert page.has_content?('Create Pin')
   end
 
   test 'update pinned image title' do
@@ -143,5 +144,6 @@ class PinsTest < ApplicationSystemTestCase
     fill_in 'Tag', with: 'tag is way more than 30 characters long'
     click_button 'Update Pin'
     assert page.has_content?('Tag is too long')
+    assert page.has_content?('Create Pin')
   end
 end
