@@ -1,0 +1,9 @@
+<li class="media mb-4">
+  <%= image_tag('avatar', alt: 'Default avatar', class: 'mr-3 rounded-circle') %>
+  <div class="media-body">
+    <h5 class="mt-0 mb-1"><%= comment.user.email %> <time datetime=<%= comment.created_at.strftime("%FT%T") %> class="h6 text-secondary"><%= comment.created_at.strftime("%d %b '%y") %></time></h5>
+    <p>
+      <%= comment.body %>
+    </p>
+  </div>
+</li>
