@@ -16,20 +16,12 @@
 
         <div class="navbar-collapse">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <%= link_to('About', about_index_path, class: 'nav-link') %>
-            </li>
+            <%= render(partial: 'nav_link', locals: { text: 'About', url: about_index_path }) %>
             <% if @user_logged_in %>
-              <li class="nav-item">
-                <%= link_to('My PinBoard', user_pinboard_pins_path(@user), class: 'nav-link') %>
-              </li>
-              <li class="nav-item">
-                <%= link_to('Create Pin', new_pin_path, class: 'nav-link') %>
-              </li>
+              <%= render(partial: 'nav_link', locals: { text: 'My PinBoard', url: user_pinboard_pins_path(@user) }) %>
+              <%= render(partial: 'nav_link', locals: { text: 'Create Pin', url: new_pin_path }) %>
             <% else %>
-              <li class="nav-item">
-                <%= link_to('Log in / Register', new_user_path, class: 'nav-link') %>
-              </li>
+              <%= render(partial: 'nav_link', locals: { text: 'Log in / Register', url: new_user_path }) %>
             <% end %>
           </ul>
           <%= render(partial: 'nav_search_bar') %>
@@ -45,9 +37,7 @@
 
         <div class="navbar-collapse">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <%= link_to('Back to Top', '#top', class: 'nav-link') %>
-            </li>
+            <%= render(partial: 'nav_link', locals: { text: 'Back to Top', url: '#top' }) %>
           </ul>
         </div>
       </div>
