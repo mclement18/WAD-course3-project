@@ -24,13 +24,7 @@
       </ul>
 
       <% if @user_logged_in %>
-        <div class="w-100 btn-group mb-2" role="group">
-          <%= link_to('Edit', edit_pin_path(@pin), class: 'btn btn-outline-dark w-50 text-uppercase') %>
-          <%= form_tag(user_pinboard_pins_path(@user), class: 'btn btn-outline-dark w-50 p-0 no-hover') do %>
-            <%= hidden_field_tag(:pin_id, @pin.id) %>
-            <%= button_tag('Add', class: 'btn btn-outline-dark w-100 text-uppercase border-0 rounded-0', disabled: @disable_add_pin) %>
-          <% end %>
-        </div>
+        <%= render(partial: 'edit_add_pin_buttons', locals: { user: @user, pin: @pin }) %>
       <% end %>
 
     </div>
