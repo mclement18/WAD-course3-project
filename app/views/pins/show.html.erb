@@ -14,12 +14,21 @@
               <%= @pin.user.email %>
             </span>
           </div>
-          <div class="">
+          <div>
             On <time datetime=<%= @pin.created_at.strftime("%FT%T") %> class="text-dark"><%= @pin.created_at.strftime("%d %b '%y") %></time>
           </div>
         </li>
 
-        <li class="mr-2 mr-lg-0 mb-1">Pinned by <span class="text-dark">n poeple</span></li>
+        <li class="mr-2 mr-lg-0 mb-1">
+          Pinned by
+          <span class="text-dark">
+            <% case @pin.users.length
+               when 0 %> nobody
+            <% when 1 %> 1 persone
+            <% else %> <%= @pin.users.length %> people
+            <% end %>
+          </span>
+        </li>
 
       </ul>
 
