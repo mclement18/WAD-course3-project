@@ -1,0 +1,19 @@
+.logo {
+  span {
+    font-weight: bold;
+    color: #0B5153;
+  }
+  em {
+    color: #b41c18;
+  }
+
+  footer & {
+    span {
+      color: #a2e0e2;
+    }
+  }
+
+  p & {
+    margin: 0;
+  }
+}
