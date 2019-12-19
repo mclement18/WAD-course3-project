@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   def new
-    @user_logged_in = session[:user_id].present?
+    @user_logged_in = user_logged_in?
     if @user_logged_in
-      user = User.find(session[:user_id])
+      user = current_user
       redirect_to user_pinboard_pins_path(user)
     else
       @user = User.new

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @user = User.find(session[:user_id])
+    @user = current_user
     @pin = Pin.find(params[:pin_id])
     @comment = Comment.new comment_params
     @comment.user = @user
@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to pin_path(@pin)
     else
-      @user_logged_in = session[:user_id].present?
+      @user_logged_in = user_logged_in?
       render 'pins/show'
     end
   end
